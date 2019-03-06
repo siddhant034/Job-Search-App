@@ -8,8 +8,8 @@ import { JobModel } from '../../models/JobModel';
 })
 export class SearchHomeComponent implements OnInit {
 
-  @Input() jobsList : Array<JobModel>;
-  filteredJobsList : Array<JobModel>;
+  @Input() jobsList: Array<JobModel>;
+  filteredJobsList: Array<JobModel>;
   experienceLevels = [];
   locations = [];
 
@@ -18,20 +18,26 @@ export class SearchHomeComponent implements OnInit {
   ngOnInit() {
   }
 
-  ngOnChanges(changes : SimpleChange){
-    if(changes['jobsList']){
+  ngOnChanges(changes: SimpleChange) {
+    if (changes['jobsList']) {
       //make list of unique experience levels and locations
       let experienceLevelsObj = {};
       let locationsObj = {};
-      for(let job of this.jobsList){
-        experienceLevelsObj[job.experience]=job.experience;
-        locationsObj[job.location]=job.location;
+      for (let job of this.jobsList) {
+        experienceLevelsObj[job.experience] = job.experience;
+        locationsObj[job.location] = job.location;
       }
       this.experienceLevels = Object.values(experienceLevelsObj);
-      this.experienceLevels=['a','b'];
+      this.experienceLevels = ['a', 'b'];
       this.locations = Object.values(locationsObj);
-      this.locations = ['a','b'];
+      this.locations = ['a', 'b'];
     }
+  }
+
+  onSearchClick() {
+    this.filteredJobsList = this.jobsList.filter((job: JobModel) => {
+      return true;
+    });
   }
 
 }
