@@ -1,0 +1,30 @@
+<div id="outer-container">
+  <div id="search-sort-fields-container">
+    <div id="count-container">
+      {{displayList.length}}
+    </div>
+    <div id="filter-container">
+      <input [(ngModel)]="filterText" (keyup)="filter()">
+    </div>
+    <div id="sort-location">
+      <button (click)="sortByLocation()">
+        Sort by location
+      </button>
+    </div>
+    <div id="sort-experience">
+      <button (click)="sortByExperience()">
+        Sort by experience
+      </button>
+    </div>
+  </div>
+  <div id="list-container">
+    <div *ngFor="let job of displayList">
+      <div id="job-card">
+
+      </div>
+    </div>
+    <div *ngIf="!displayList || !displayList.length">
+      No jobs found!
+    </div>
+  </div>
+</div>

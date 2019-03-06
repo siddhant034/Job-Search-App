@@ -1,0 +1,8 @@
+#outer-container{
+    height: 100%;
+    width: 100%;
+}
+#experience-combo-container, #location-combo-container, #search-button-container{
+    display: inline-block;
+    margin-left: 12px;
+}
