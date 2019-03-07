@@ -23,25 +23,32 @@
     <div id="list-container">
       <mat-card *ngFor="let job of displayList">
         <mat-card-content id="job-card">
-          <p>{{job?.title}}</p>
-          <p>{{job?.companyname}}</p>
-          <div>
-            <p>Exp :&nbsp;</p>
-            <p>{{job?.experience}}</p>
-            <p>Location :&nbsp;</p>
-            <p>{{job?.location}}</p>
+          <p id="job-title">{{job?.title}}</p>
+          <p id="job-company">{{job?.companyname}}</p>
+          <div id="experience-location">
+            <p *ngIf="job && job.experience" class="label">Exp :&nbsp;</p>
+            <p *ngIf="job && job.experience">{{job?.experience}}</p>
+            <p *ngIf="job && job.location" id="location-p" class="label">Location :&nbsp;</p>
+            <p *ngIf="job && job.location">{{job?.location}}</p>
           </div>
-          <div>
-            <p>Skills :&nbsp;</p>
+          <div id="job-skills" *ngIf="job && job.skills">
+            <p class="label">Skills :&nbsp;</p>
             <p>{{job?.skills}}</p>
           </div>
-          <div>
-            <p>Job Desc.</p>
+          <div id="" *ngIf="job && job.jd">
+            <p class="label">Job Description</p>
+          </div>
+          <div id="" *ngIf="job && job.jd">
             <p>{{job?.jd}}</p>
           </div>
-          <div>
-            <p>Source : </p>
+          <div *ngIf="job && job.source">
+            <p class="label">Source :&nbsp;</p>
             <p>{{job?.source}}</p>
+          </div>
+          <div *ngIf="job && job.applylink" id="apply-button-container">
+            <button mat-raised-button color="primary" (click)="onApplyClick(job.applylink)">
+              Apply
+            </button>
           </div>
         </mat-card-content>
       </mat-card>

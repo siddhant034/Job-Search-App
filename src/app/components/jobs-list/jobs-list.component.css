@@ -1,3 +1,7 @@
+p{
+    margin:0;
+    margin-top:8px;
+}
 #outer-container{
     height: 100%;
 }
@@ -20,6 +24,14 @@ label{
 }
 #list-container{
     height:100%;
+    display: flex;
+    flex-wrap: wrap;
+    overflow : auto;
+}
+#list-container > mat-card{
+    width:360px;
+    padding:8px;
+    margin:0 16px 16px 0;
 }
 #no-data-container{
     display: flex;
@@ -38,4 +50,26 @@ mat-card-content{
 #list-card{
     margin-top: 16px;
     height: calc(100% - 100px);
+}
+#job-title{
+    font-weight: bold;
+    font-size: 16px;
+}
+#job-company{
+    color:rgba(0,0,0,.56);
+}
+#job-card > div{
+    display: flex;
+}
+#location-p{
+    margin-left:24px;
+}
+.label{
+    font-size: 10px;
+    color:rgba(0,0,0,.27);
+    margin-top: 11px;
+}
+#apply-button-container{
+    display: flex;
+    justify-content: flex-end;
 }

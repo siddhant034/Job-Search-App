@@ -9,11 +9,11 @@ import { JobModel } from '../../models/JobModel';
 export class SearchHomeComponent implements OnInit {
 
   @Input() jobsList: Array<JobModel>;
-  DEFAULT_COMBO_OPTION : string = '--Any--'
+  DEFAULT_COMBO_OPTION: string = '--Any--'
   filteredJobsList: Array<JobModel>;
-  isJobsListVisible : boolean;
-  selectedLocation : string;
-  selectedExperience : string;
+  isJobsListVisible: boolean;
+  selectedLocation: string;
+  selectedExperience: string;
   experienceLevels = [];
   locations = [];
 
@@ -30,13 +30,15 @@ export class SearchHomeComponent implements OnInit {
       let experienceLevelsObj = {};
       let locationsObj = {};
       for (let job of this.jobsList) {
-        experienceLevelsObj[job.experience] = job.experience;
-        locationsObj[job.location] = job.location;
+        if (job.experience) {
+          experienceLevelsObj[job.experience] = job.experience;
+        }
+        if (job.location) {
+          locationsObj[job.location] = job.location;
+        }
       }
       this.experienceLevels = Object.values(experienceLevelsObj);
-      this.experienceLevels = ['a', 'b'];
       this.locations = Object.values(locationsObj);
-      this.locations = ['a', 'b'];
       this.experienceLevels.unshift(this.DEFAULT_COMBO_OPTION);
       this.locations.unshift(this.DEFAULT_COMBO_OPTION);
     }
@@ -44,18 +46,18 @@ export class SearchHomeComponent implements OnInit {
 
   onSearchClick() {
     this.filteredJobsList = this.jobsList.filter((job: JobModel) => {
-      let locationMatch : boolean;
-      let experienceMatch : boolean;
-      if(this.selectedExperience == this.DEFAULT_COMBO_OPTION){
+      let locationMatch: boolean;
+      let experienceMatch: boolean;
+      if (this.selectedExperience == this.DEFAULT_COMBO_OPTION) {
         experienceMatch = true;
       }
-      else{
+      else {
         experienceMatch = (job.experience.toLowerCase().trim() == this.selectedExperience);
       }
-      if(this.selectedLocation == this.DEFAULT_COMBO_OPTION){
+      if (this.selectedLocation == this.DEFAULT_COMBO_OPTION) {
         locationMatch = true;
       }
-      else{
+      else {
         locationMatch = (job.location.toLowerCase().trim() == this.selectedLocation);
       }
       return (locationMatch && experienceMatch);

@@ -68,6 +68,10 @@ export class JobsListComponent implements OnInit {
     this.sortList();
   }
 
+  onApplyClick(link : string){
+    window.open(link,'_blank');
+  }
+
   ngOnChanges() {
     this.filterText = '';
     this.experienceToggle = false;
