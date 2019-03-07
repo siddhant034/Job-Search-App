@@ -2,7 +2,31 @@
     height: 100%;
     width: 100%;
 }
-#experience-combo-container, #location-combo-container, #search-button-container{
-    display: inline-block;
-    margin-left: 12px;
+#search-fields-container{
+    display: flex;
+    padding:16px;
+}
+mat-card-content{
+    display: flex;
+}
+#experience-combo-container, #location-combo-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rhba;
+    border: 1px solid lightgray;
+    border-radius: 8px;
+    padding: 8px;
+}
+#location-combo-container{
+    margin-left:36px;
+}
+#search-button-container{
+    margin-left: auto;
+}
+mat-card{
+    width:100%;
+}
+mat-select{
+    width:100px;
 }

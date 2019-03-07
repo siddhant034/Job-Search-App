@@ -4,7 +4,7 @@
       {{displayList.length}}
     </div>
     <div id="filter-container">
-      <input [(ngModel)]="filterText" (keyup)="filter()">
+      <input (keyup)="filter()">
     </div>
     <div id="sort-location">
       <button (click)="sortByLocation()">

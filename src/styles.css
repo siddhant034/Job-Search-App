@@ -1,11 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
 html, body{
     height:100%;
     width:100%;
     margin:0;
     padding:0;
 }
-select, option{
+/* mat-select, mat-option{
     padding:4px;
     border-radius: 4px;
     width:160px;
@@ -13,6 +15,19 @@ select, option{
 input:focus, select:focus{
     outline: none;
 }
-select{
+mat-select{
     margin-left:8px;
 }
+input, button{
+    padding:12px;
+    border-radius: 12px;
+    width:210px;
+}
+input:focus, select:focus, button:focus{
+    outline: none;
+}
+button{
+    cursor: pointer;
+    background-color: crimson;
+    color:white;
+} */
