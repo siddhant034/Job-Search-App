@@ -17,10 +17,11 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.jobsFetchService.fetchJobs(this.url).subscribe((data)=>{
-    // if(data){
-    //   this.jobsList = data;
-    // }
-    // })
+    this.jobsFetchService.fetchJobs(this.url).subscribe((data:any) => {
+      if (data && data.jobsfeed) {
+        console.log('data :',data);
+        this.jobsList = data.jobsfeed;
+      }
+    })
   }
 }

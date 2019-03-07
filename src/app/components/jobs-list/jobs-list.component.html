@@ -7,13 +7,13 @@
         </div>
         <div id="filter-container">
           <label for="filter-input">Search by :&nbsp;</label>
-          <input id="filter-input" matInput (keyup)="filter()" placeholder="Keywords or Skills">
+          <input id="filter-input" matInput (keyup)="filter()" [(value)]="filterText" placeholder="Skills or Companies or Title">
         </div>
         <div id="sort-buttons-container">
           <label for="sort-buttons">Sort by : &nbsp;</label>
           <mat-button-toggle-group multiple id="sort-buttons">
-            <mat-button-toggle value="Location">Location</mat-button-toggle>
-            <mat-button-toggle value="Experience">Experience</mat-button-toggle>
+            <mat-button-toggle (change)="onToggleChange(1)" value="Location">Location</mat-button-toggle>
+            <mat-button-toggle (change)="onToggleChange(2)" value="Experience">Experience</mat-button-toggle>
           </mat-button-toggle-group>
         </div>
       </div>
@@ -21,11 +21,30 @@
   </mat-card>
   <div id="list-card">
     <div id="list-container">
-      <div *ngFor="let job of displayList">
-        <div id="job-card">
-
-        </div>
-      </div>
+      <mat-card *ngFor="let job of displayList">
+        <mat-card-content id="job-card">
+          <p>{{job?.title}}</p>
+          <p>{{job?.companyname}}</p>
+          <div>
+            <p>Exp :&nbsp;</p>
+            <p>{{job?.experience}}</p>
+            <p>Location :&nbsp;</p>
+            <p>{{job?.location}}</p>
+          </div>
+          <div>
+            <p>Skills :&nbsp;</p>
+            <p>{{job?.skills}}</p>
+          </div>
+          <div>
+            <p>Job Desc.</p>
+            <p>{{job?.jd}}</p>
+          </div>
+          <div>
+            <p>Source : </p>
+            <p>{{job?.source}}</p>
+          </div>
+        </mat-card-content>
+      </mat-card>
       <div id="no-data-container" *ngIf="!displayList || !displayList.length">
         No jobs found!
       </div>
