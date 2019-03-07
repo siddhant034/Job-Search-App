@@ -1,12 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 
-import { JobsFetchServiceService } from './jobs-fetch-service.service';
+import { JobsFetchService } from './jobs-fetch-service.service';
+import { HttpClientModule } from '@angular/common/http';
 
-describe('JobsFetchServiceService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+describe('JobsFetchService', () => {
+  beforeEach(() => TestBed.configureTestingModule({
+    imports:[HttpClientModule],
+    providers:[JobsFetchService]
+  }));
 
   it('should be created', () => {
-    const service: JobsFetchServiceService = TestBed.get(JobsFetchServiceService);
+    const service: JobsFetchService = TestBed.get(JobsFetchService);
     expect(service).toBeTruthy();
   });
 });

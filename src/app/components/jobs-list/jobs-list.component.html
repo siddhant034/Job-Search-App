@@ -8,7 +8,7 @@
         </div>
         <div id="sort-buttons-container">
           <label for="sort-buttons">Sort by : &nbsp;</label>
-          <mat-button-toggle-group multiple id="sort-buttons">
+          <mat-button-toggle-group id="sort-buttons">
             <mat-button-toggle (change)="onToggleChange(1)" [checked]="locationToggle" value="Location">Location</mat-button-toggle>
             <mat-button-toggle (change)="onToggleChange(2)" [checked]="experienceToggle" value="Experience">Experience</mat-button-toggle>
           </mat-button-toggle-group>

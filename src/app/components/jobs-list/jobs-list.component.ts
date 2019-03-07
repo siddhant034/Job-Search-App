@@ -23,9 +23,15 @@ export class JobsListComponent implements OnInit {
   onToggleChange(type) {
     if (type == 1) {
       this.locationToggle = !this.locationToggle;
+      if (this.locationToggle) {
+        this.experienceToggle = false;
+      }
     }
     else {
       this.experienceToggle = !this.experienceToggle;
+      if (this.experienceToggle) {
+        this.locationToggle = false;
+      }
     }
     this.sortList();
   }
@@ -37,29 +43,23 @@ export class JobsListComponent implements OnInit {
       return;
     }
     this.displayList = this.displayList.sort((job1: JobModel, job2: JobModel) => {
-      if (this.locationToggle && this.experienceToggle) {
-        if(!job1.location){
+      if (this.locationToggle) {
+        if (!job1.location) {
           return 1;
         }
-        if(!job2.location){
+        else if (!job2.location) {
           return -1;
         }
-        let locationDiff = job1.location.toLowerCase().trim().localeCompare(job2.location.toLowerCase().trim());
-        if (locationDiff > 0) {
-          return -1;
-        }
-        else if (locationDiff < 0) {
-          return 1;
-        }
-        else {
-          return -1*(job1.experience.trim().toLowerCase().localeCompare(job2.experience.trim().toLowerCase()));
-        }
-      }
-      else if (this.locationToggle) {
-        return -1*(job1.location.trim().toLowerCase().localeCompare(job2.location.trim().toLowerCase()));
+        return (job1.location.trim().toLowerCase().localeCompare(job2.location.trim().toLowerCase()));
       }
       else {
-        return -1*(job1.experience.trim().toLowerCase().localeCompare(job2.experience.trim().toLowerCase()));
+        if (!job1.experience || job2.experience == 'Fresher') {
+          return 1;
+        }
+        else if (!job2.experience || job1.experience == 'Fresher') {
+          return -1;
+        }
+        return (parseInt(job1.experience) - parseInt(job2.experience));
       }
     })
   }
@@ -72,7 +72,9 @@ export class JobsListComponent implements OnInit {
     }
     else {
       this.displayList = this.jobsList.filter((x: JobModel) => {
-        if (x.skills.trim().toLowerCase().includes(this.filterText) || x.companyname.trim().toLowerCase().startsWith(this.filterText) || x.title.trim().toLowerCase().includes(this.filterText)) {
+        if ((x.skills && x.skills.trim().toLowerCase().includes(this.filterText)) 
+        || (x.companyname && x.companyname.trim().toLowerCase().startsWith(this.filterText)) 
+        || (x.title && x.title.trim().toLowerCase().includes(this.filterText))) {
           return true;
         }
         return false;
