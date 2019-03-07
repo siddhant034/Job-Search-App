@@ -20,6 +20,7 @@ export class SearchHomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    //set default combo value
     this.selectedExperience = this.DEFAULT_COMBO_OPTION;
     this.selectedLocation = this.DEFAULT_COMBO_OPTION;
   }
@@ -34,7 +35,21 @@ export class SearchHomeComponent implements OnInit {
           experienceLevelsObj[job.experience] = job.experience;
         }
         if (job.location) {
-          locationsObj[job.location] = job.location;
+          // split location by ',' and '/'
+          let splitArr = [];
+          if (job.location.includes(',')) {
+            splitArr = job.location.split(',');
+          }
+          else {
+            splitArr = job.location.split('/');
+          }
+          for (let location of splitArr) {
+            locationsObj[location] = location;
+          }
+          //handle 'Bangalore' and 'Bengaluru' case
+          if (locationsObj['Bangalore'] && locationsObj['Bengaluru']) {
+            delete locationsObj['Bengaluru'];
+          }
         }
       }
       this.experienceLevels = Object.values(experienceLevelsObj);
@@ -44,6 +59,7 @@ export class SearchHomeComponent implements OnInit {
     }
   }
 
+  // filters list based on top level search parameters
   onSearchClick() {
     this.filteredJobsList = this.jobsList.filter((job: JobModel) => {
       let locationMatch: boolean;
@@ -52,17 +68,29 @@ export class SearchHomeComponent implements OnInit {
         experienceMatch = true;
       }
       else {
-        experienceMatch = (job.experience.toLowerCase().trim() == this.selectedExperience);
+        experienceMatch = (job.experience.toLowerCase().trim() == this.selectedExperience.trim().toLowerCase());
       }
-      if (this.selectedLocation == this.DEFAULT_COMBO_OPTION) {
+      if (this.selectedLocation == this.DEFAULT_COMBO_OPTION || this.selectedLocation == 'Anywhere in India') {
         locationMatch = true;
       }
       else {
-        locationMatch = (job.location.toLowerCase().trim() == this.selectedLocation);
+        //compare each part of the job location with the selected option ex : Hyderabad, Mumbai
+        let splitArr = [];
+        if (job.location.includes(',')) {
+          splitArr = job.location.split(',');
+        }
+        else {
+          splitArr = job.location.split('/');
+        }
+        for (let location of splitArr) {
+          if (location.toLowerCase().trim() == this.selectedLocation.trim().toLowerCase()) {
+            locationMatch = true;
+            break;
+          }
+        }
       }
       return (locationMatch && experienceMatch);
     });
     this.isJobsListVisible = true;
   }
-
 }

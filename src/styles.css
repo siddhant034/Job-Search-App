@@ -7,27 +7,16 @@ html, body{
     margin:0;
     padding:0;
 }
-/* mat-select, mat-option{
-    padding:4px;
-    border-radius: 4px;
-    width:160px;
+::-webkit-scrollbar
+{
+  width: 6px;  /* for vertical scrollbars */
+  height: 12px; /* for horizontal scrollbars */
 }
-input:focus, select:focus{
-    outline: none;
+::-webkit-scrollbar-track
+{
+  background: rgba(0, 0, 0, 0.1);
 }
-mat-select{
-    margin-left:8px;
+::-webkit-scrollbar-thumb
+{
+  background: #673ab7;
 }
-input, button{
-    padding:12px;
-    border-radius: 12px;
-    width:210px;
-}
-input:focus, select:focus, button:focus{
-    outline: none;
-}
-button{
-    cursor: pointer;
-    background-color: crimson;
-    color:white;
-} */
