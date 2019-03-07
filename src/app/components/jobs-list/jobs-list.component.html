@@ -1,30 +1,34 @@
 <div id="outer-container">
-  <div id="search-sort-fields-container">
-    <div id="count-container">
-      {{displayList.length}}
-    </div>
-    <div id="filter-container">
-      <input (keyup)="filter()">
-    </div>
-    <div id="sort-location">
-      <button (click)="sortByLocation()">
-        Sort by location
-      </button>
-    </div>
-    <div id="sort-experience">
-      <button (click)="sortByExperience()">
-        Sort by experience
-      </button>
-    </div>
-  </div>
-  <div id="list-container">
-    <div *ngFor="let job of displayList">
-      <div id="job-card">
-
+  <mat-card>
+    <mat-card-content>
+      <div id="search-sort-fields-container">
+        <div *ngIf="displayList.length" id="count-container">
+          {{displayList.length}}
+        </div>
+        <div id="filter-container">
+          <label for="filter-input">Search by :&nbsp;</label>
+          <input id="filter-input" matInput (keyup)="filter()" placeholder="Keywords or Skills">
+        </div>
+        <div id="sort-buttons-container">
+          <label for="sort-buttons">Sort by : &nbsp;</label>
+          <mat-button-toggle-group multiple id="sort-buttons">
+            <mat-button-toggle value="Location">Location</mat-button-toggle>
+            <mat-button-toggle value="Experience">Experience</mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
       </div>
-    </div>
-    <div *ngIf="!displayList || !displayList.length">
-      No jobs found!
+    </mat-card-content>
+  </mat-card>
+  <div id="list-card">
+    <div id="list-container">
+      <div *ngFor="let job of displayList">
+        <div id="job-card">
+
+        </div>
+      </div>
+      <div id="no-data-container" *ngIf="!displayList || !displayList.length">
+        No jobs found!
+      </div>
     </div>
   </div>
 </div>

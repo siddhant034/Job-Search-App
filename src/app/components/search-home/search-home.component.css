@@ -1,6 +1,7 @@
 #outer-container{
     height: 100%;
     width: 100%;
+    background-color: rgba(0,0,0,.1);
 }
 #search-fields-container{
     display: flex;
@@ -13,7 +14,6 @@ mat-card-content{
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rhba;
     border: 1px solid lightgray;
     border-radius: 8px;
     padding: 8px;
@@ -29,4 +29,9 @@ mat-card{
 }
 mat-select{
     width:100px;
+}
+#jobs-list-container{
+    padding: 0 16px;
+    height: calc(100% - 112px);
+    padding: 0 16px;
 }

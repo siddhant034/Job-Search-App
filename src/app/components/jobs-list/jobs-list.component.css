@@ -1,0 +1,41 @@
+#outer-container{
+    height: 100%;
+}
+#search-sort-fields-container{
+    display : flex;
+}
+#sort-buttons-container{
+    margin-left:auto;
+}
+input{
+    border: 1px solid lightgray;
+    border-radius: 8px;
+    padding: 8px;
+}
+input:focus{
+    outline: none;
+}
+label{
+    font-weight: bold;
+}
+#list-container{
+    height:100%;
+}
+#no-data-container{
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    color:rgba(0,0,0,.56);
+    font-size: 20px;
+}
+mat-card-content{
+    height: 100%;;
+}
+#filter-container{
+    margin:auto 0;
+}
+#list-card{
+    margin-top: 16px;
+    height: calc(100% - 100px);
+}

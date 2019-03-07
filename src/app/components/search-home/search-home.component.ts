@@ -9,13 +9,19 @@ import { JobModel } from '../../models/JobModel';
 export class SearchHomeComponent implements OnInit {
 
   @Input() jobsList: Array<JobModel>;
+  DEFAULT_COMBO_OPTION : string = '--Any--'
   filteredJobsList: Array<JobModel>;
+  isJobsListVisible : boolean;
+  selectedLocation : string;
+  selectedExperience : string;
   experienceLevels = [];
   locations = [];
 
   constructor() { }
 
   ngOnInit() {
+    this.selectedExperience = this.DEFAULT_COMBO_OPTION;
+    this.selectedLocation = this.DEFAULT_COMBO_OPTION;
   }
 
   ngOnChanges(changes: SimpleChange) {
@@ -31,13 +37,30 @@ export class SearchHomeComponent implements OnInit {
       this.experienceLevels = ['a', 'b'];
       this.locations = Object.values(locationsObj);
       this.locations = ['a', 'b'];
+      this.experienceLevels.unshift(this.DEFAULT_COMBO_OPTION);
+      this.locations.unshift(this.DEFAULT_COMBO_OPTION);
     }
   }
 
   onSearchClick() {
     this.filteredJobsList = this.jobsList.filter((job: JobModel) => {
-      return true;
+      let locationMatch : boolean;
+      let experienceMatch : boolean;
+      if(this.selectedExperience == this.DEFAULT_COMBO_OPTION){
+        experienceMatch = true;
+      }
+      else{
+        experienceMatch = (job.experience.toLowerCase().trim() == this.selectedExperience);
+      }
+      if(this.selectedLocation == this.DEFAULT_COMBO_OPTION){
+        locationMatch = true;
+      }
+      else{
+        locationMatch = (job.location.toLowerCase().trim() == this.selectedLocation);
+      }
+      return (locationMatch && experienceMatch);
     });
+    this.isJobsListVisible = true;
   }
 
 }

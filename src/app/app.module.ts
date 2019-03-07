@@ -6,6 +6,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material/card';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatInputModule} from '@angular/material/input';
 
 
 import { AppComponent } from './app.component';
@@ -26,7 +28,9 @@ import { JobsListComponent } from './components/jobs-list/jobs-list.component';
     HttpClientModule,
     MatCardModule,
     MatSelectModule,
-    MatButtonModule
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatInputModule
   ],
   providers: [JobsFetchService],
   bootstrap: [AppComponent]
